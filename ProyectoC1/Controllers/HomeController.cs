@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using ProyectoC1.Db;
 using ProyectoC1.Models;
 
 namespace ProyectoC1.Controllers;
@@ -7,15 +8,18 @@ namespace ProyectoC1.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly AppDbContext appDbContext;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, AppDbContext _dbContext)
     {
         _logger = logger;
+        appDbContext = _dbContext;
     }
 
     public IActionResult Index()
     {
-        return View();
+        var alumnos = appDbContext.Alumnos.ToList();
+        return View(alumnos);
     }
 
     public IActionResult Privacy()
