@@ -1,0 +1,27 @@
+﻿@model List<Alumno>;
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12">
+            <table class="table table-hover">
+                <thead>
+                    <th>AlumnoId</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (Alumno alumno in Model)
+                        {
+                            <tr>
+                                <td>@alumno.AlumnoId</td>
+                                <td>@alumno.Nombres</td>
+                                <td>@alumno.Apellidos</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

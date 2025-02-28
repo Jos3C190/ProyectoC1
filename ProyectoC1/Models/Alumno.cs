@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ProyectoC1.Models
 {
-    public class Alumno
+    public class Alumno : BaseModel
     {
         #region Propiedades
         [Key]
@@ -44,12 +44,10 @@ namespace ProyectoC1.Models
         #endregion Constructor
 
         #region Funciones
-        public int CalcularEdad()
+
+        public bool EsMayorDeEdad()
         {
-            var hoy = DateTime.Today;
-            var edad = hoy.Year - FechaNacimiento.Year;
-            if (FechaNacimiento.Date > hoy.AddYears(-edad)) edad--;
-            return edad;
+            return Edad > 18;
         }
         #endregion Funciones
     }
