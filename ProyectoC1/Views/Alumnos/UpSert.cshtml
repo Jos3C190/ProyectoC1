@@ -1,0 +1,57 @@
+﻿@model Alumno;
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-controller="Alumnos" asp-action="Index">Index</a>
+        </li>
+        <li class="breadcrumb-item">Agregar nuevo registro</li>
+    </ol>
+</nav>
+
+<form asp-action="UpSert" asp-controller="Alumnos" method="post">
+    <div asp-validation-summary="All">
+        
+    </div>
+    <input type="hidden" asp-for="AlumnoId" value="@Model.AlumnoId" aria-label="Id">
+
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><span class="fas fa-user"></span></span>
+        <input type="text" class="form-control" asp-for="Nombres" placeholder="Nombres" aria-label="Alumno">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><span class="fas fa-user"></span></span>
+        <input type="text" class="form-control" asp-for="Apellidos" placeholder="Apellidos" aria-label="Apellidos">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><span class="fas fa-list"></span></span>
+        <input type="number" class="form-control" asp-for="Edad" value="@((Model.Edad == 0) ? string.Empty : Model.Edad)" placeholder="Edad" aria-label="Edad">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><span class="fas fa-list"></span></span>
+        <input type="text" class="form-control" asp-for="Carnet" placeholder="Carnet" aria-label="Carnet">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><span class="fas fa-hashtag"></span></span>
+        <input type="number" class="form-control" asp-for="CantidadMaterias" value="@((Model.CantidadMaterias == 0) ? string.Empty : Model.CantidadMaterias)" placeholder="Cantidad de materias" aria-label="CantidadMaterias">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><span class="fas fa-hashtag"></span></span>
+        <input type="number" class="form-control" asp-for="Ciclo" value="@((Model.Ciclo == 0) ? string.Empty : Model.Ciclo)" placeholder="Ciclo" aria-label="Ciclo">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><span class="fas fa-calendar"></span></span>
+        <input type="date" class="form-control" asp-for="FechaNacimiento" placeholder="Fecha de nacimiento" aria-label="FechaNacimiento">
+    </div>
+    <button class="btn btn-success" type="submit"><span class="fas fa-save mx-1"></span>Guardar</button>
+</form>
+
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}

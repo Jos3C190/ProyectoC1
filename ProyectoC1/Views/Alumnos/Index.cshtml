@@ -1,15 +1,27 @@
 ﻿@model List<Alumno>;
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item">Index</li>
+    </ol>
+</nav>
+
 <div class="container">
     <div class="row">
-        <div class="col-xl-12 col-md-12 col-sm-12">
-            <table class="table table-hover">
-                <thead>
-                    <th>AlumnoId</th>
+        <div class="col-xl-12 col-md-12 col-sm-12 d-flex justify-content-start">
+            <a class="btn btn-primary" asp-action="Upsert" asp-controller="Alumnos"><span class="fas fa-plus mx-1"></span>Agregar</a>
+        </div>
+            <div class="col-xl-12 col-md-12 col-sm-12 mt-3">
+                <table class="table table-hover">
+                    <thead>
+                    <th>ID</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
-                </thead>
-                <tbody>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                    </thead>
+                    <tbody>
                     @{
                         foreach (Alumno alumno in Model)
                         {
@@ -17,11 +29,34 @@
                                 <td>@alumno.AlumnoId</td>
                                 <td>@alumno.Nombres</td>
                                 <td>@alumno.Apellidos</td>
+                                <td>
+                                    @if (alumno.IsActive)
+                                    {
+                                        <span class="badge bg-success">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Inactivo</span>
+                                    }
+                                </td>
+
+                                <td>
+                                    <a type="button" class="btn btn-success" asp-action="View" asp-controller="Alumnos" asp-route-id="@alumno.AlumnoId">
+                                        <span class="fas fa-eye"></span>
+                                    </a>
+                                    <a type="button" class="btn btn-warning" asp-action="Upsert" asp-controller="Alumnos" asp-route-id="@alumno.AlumnoId">
+                                        <span class="fas fa-pencil"></span>
+                                    </a>
+                                    <a type="button" class="btn btn-danger" asp-action="Delete" asp-controller="Alumnos" asp-route-id="@alumno.AlumnoId">
+                                        <span class="fas fa-trash"></span>
+                                    </a>
+                                </td>
+                               
                             </tr>
                         }
                     }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 </div>
